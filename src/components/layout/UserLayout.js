@@ -9,7 +9,7 @@ import { createContext, useState } from 'react';
 
 export const NavigationContext = createContext({});
 const UserLayout = ({ children }) => {
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState(1);
 
     const switchRenderNavigation = () =>{
         switch(value){
