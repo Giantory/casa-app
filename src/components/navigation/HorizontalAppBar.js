@@ -17,11 +17,9 @@ import { NavigationContext } from '../layout/UserLayout';
 const HorizontalAppBar = () => {
     const { value, setValue } = useContext(NavigationContext);
     return (
-        <Box sx={{ position: 'relative', marginTop: 1.7 }}>
-
+        <Box sx={{ height: 75, width:'100%', justifyContent: 'center', }}>
             <BottomNavigation
-
-                sx={{ borderRadius: 3, boxShadow: 10, height: 70 }}
+                sx={{ borderRadius: 3, boxShadow: 10, height: 70, width:'100%' }}
                 showLabels
                 value={value}
                 onChange={(event, newValue) => {
