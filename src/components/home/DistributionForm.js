@@ -57,9 +57,23 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-import DenseTable from './RecentConsum';
+import RecentConsum from './RecentConsum';
+import QuickResumeTable from './QuickResumeTable';
 
 const DistributionForm = (props) => {
+    const [selectedDates, setSelectedDates] = React.useState([]);
+
+    const handleDateChange = (date) => {
+        setSelectedDates((prevSelectedDates) => {
+            const index = prevSelectedDates.findIndex((d) => d.getTime() === date.getTime());
+            if (index === -1) {
+                return [...prevSelectedDates, date];
+            } else {
+                return [...prevSelectedDates.slice(0, index), ...prevSelectedDates.slice(index + 1)];
+            }
+        });
+    };
+
     const { open, setOpen } = props.showModal;
 
 
@@ -170,7 +184,7 @@ const DistributionForm = (props) => {
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <DenseTable />
+                            <RecentConsum />
                         </Grid>
                     </Grid>
                     <Grid item xs={12}>
@@ -233,7 +247,7 @@ const DistributionForm = (props) => {
                                     />
                                 </Grid>
                                 <Grid item xs={6} sx={{ display: "flex", alignItems: "center" }}>
-                                    <Button  variant="contained" >
+                                    <Button variant="contained" >
                                         Buscar
                                     </Button>
                                 </Grid>
@@ -244,11 +258,11 @@ const DistributionForm = (props) => {
                     <Grid item xs={6}>
                         <Grid item xs={12} sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                             <Typography variant='h6'>
-                                Consumos recientes
+                                Consumos registrados
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <DenseTable />
+                            <QuickResumeTable />
                         </Grid>
                         {/* <FormControl fullWidth>
                             <InputLabel>Equipo</InputLabel>

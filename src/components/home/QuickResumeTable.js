@@ -18,7 +18,7 @@ const rows = [
   createData('Cupcake', 305, 3.7, 67, 4.3),
 ];
 
-export default function RecentConsum() {
+export default function QuickResumeTable() {
   return (
     <TableContainer >
       <Table  size="small" aria-label="a dense table">

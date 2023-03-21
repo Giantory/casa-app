@@ -5,6 +5,7 @@ import Grid from '@mui/system/Unstable_Grid/Grid';
 
 
 import HorizontalAppBar from '../navigation/HorizontalAppBar';
+import SideBar from '../navigation/SideBar';
 
 import { createContext, useState } from 'react';
 
@@ -33,19 +34,16 @@ const UserLayout = ({ children }) => {
     }
 
     return (
-        <NavigationContext.Provider value={{ value, setValue }}>            
-                <Grid container sx={{justifyContent:'center'}}>
-                    <Grid container sx={{ justifyContent: "center",   }}>
-                        <Box sx={{ height: 670 }}>
-                            {switchRenderNavigation()}
-                        </Box>
-                    </Grid>
+        <NavigationContext.Provider value={{ value, setValue }}>
+            {/* <SideBar /> */}
+            <Box sx={{ height: 770, }}>
+                {switchRenderNavigation()}
+            </Box>
+            <Grid container sx={{ justifyContent: 'center' }}>
+                <Grid container sx={{ width: '45%' }}>
+                    <HorizontalAppBar />
                 </Grid>
-                <Grid container sx={{justifyContent:'center'}}>
-                    <Grid container sx={{width:'45%'}}>
-                        <HorizontalAppBar />
-                    </Grid>
-                </Grid>           
+            </Grid>
         </NavigationContext.Provider>
     )
 }

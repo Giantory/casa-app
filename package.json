@@ -4,9 +4,11 @@
   "private": true,
   "main": "public/electron.js",
   "dependencies": {
+    "@ambiot/material-ui-multiple-dates-picker": "^1.0.3",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.9",
+    "@mui/lab": "^5.0.0-alpha.123",
     "@mui/material": "^5.11.10",
     "@mui/x-date-pickers": "^6.0.1",
     "@testing-library/jest-dom": "^5.16.5",
