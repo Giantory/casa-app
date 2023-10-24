@@ -1,25 +1,35 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/system/Unstable_Grid/Grid';
+import Toolbar from '@mui/material/Toolbar';
+
 import HorizontalAppBar from '../navigation/HorizontalAppBar';
-import Card from '@mui/material/Card'
+import SideBar from '../categories/DriverCategoryInfo';
+
 import { createContext, useState } from 'react';
+
+
+//pages
+import Home from '../../pages/home';
+import Drivers from '../../pages/categories';
+
 
 export const NavigationContext = createContext({});
 const UserLayout = ({ children }) => {
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState(1);
 
-    const switchRenderNavigation = () =>{
-        switch(value){
+    const switchRenderNavigation = () => {
+        switch (value) {
             case 1:
-                return <div>Inicio</div>
+                return <Home />
             case 2:
-                return <div>Equipos</div>
+                return <Drivers />
             case 3:
-                return <div>Historial</div>
+                return <div>Equipos</div>
             case 4:
+                return <div>Historial</div>
+            case 5:
                 return <div>Estadísticas</div>
             default:
                 return <div>Not found</div>
@@ -27,23 +37,20 @@ const UserLayout = ({ children }) => {
     }
 
     return (
-        <NavigationContext.Provider value={{value, setValue}}>
-        <Box sx={{bgcolor:'#F0F0F9', height: '100vh', width: '200vh' }}>
-            <Grid sx={{minHeight: '100vh', minWidth:'100vh'}} container spacing={1}>
+        <NavigationContext.Provider value={{ value, setValue }}>
+            <Grid container sx={{ justifyContent: 'center' }} >
                 <Grid item xs={12}>
-                </Grid>        
-                <Grid item xs={12}> 
-                <Card sx={{ minHeight: 500, minWidth:'100%', bgcolor: '#F0F0F9', boxShadow: 1 }}>
+                    <Toolbar >
+                        
+                    </Toolbar>
+                </Grid>
+                <Grid item xs={12} sx={{ minHeight: 610, }}>
                     {switchRenderNavigation()}
-                </Card>              
                 </Grid>
-                <Grid item xs={1}></Grid>
-                <Grid item xs={10}>
-                    <HorizontalAppBar/>
+                <Grid item xs={12} sx={{ width: '45%' }}>
+                    <HorizontalAppBar />
                 </Grid>
-                <Grid item xs={1}></Grid>
             </Grid>
-        </Box>
         </NavigationContext.Provider>
     )
 }
