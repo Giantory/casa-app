@@ -34,35 +34,11 @@ export default function DaysControl() {
         setOpen(true);
     }
     return (
-        <Card sx={{ minHeight: 675 }}>
+        <Card variant="outlined" sx={{ minHeight: 300  }}>
             <CardContent>
                 <Grid container spacing={2} >
                     <Grid item container spacing={2} xs={12}>
-                        <Grid item xs={2} >
-                            <Button variant="contained" onClick={handleOpen} endIcon={<AddIcon />}>
-                                Agregar
-                            </Button>
-                        </Grid>
-                        <Grid item xs={1} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                            <Divider orientation="vertical" />
-                        </Grid>
-                        <Grid item xs={3}>
-                            <TextField
-                                size='small'
-                                type='number'
-                                label='Phone No.'
-                                placeholder='+1-123-456-8790'
-                            // InputProps={{
-                            //     startAdornment: (
-                            //         <InputAdornment position='start'>
-                            //             <Phone />
-                            //         </InputAdornment>
-                            //     )
-                            // }}
-                            />
-                        </Grid>
                         <Grid item xs={7} >
-
                             <TextField
                                 size='small'
                                 sx={{ '& .MuiOutlinedInput-root': { borderRadius: 4 } }}

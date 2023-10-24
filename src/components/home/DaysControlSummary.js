@@ -53,7 +53,7 @@ export default function DaysControlSummary() {
     }
   }, [])
   return (
-    <Card>
+    <Card variant="outlined">
       <CardContent>
         <Grid container spacing={1}>
           <Grid item xs={12}>

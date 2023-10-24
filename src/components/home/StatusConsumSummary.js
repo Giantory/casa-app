@@ -1,14 +1,12 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import Drawer from '@mui/material/Drawer';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -24,13 +22,13 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  marginLeft: `-${drawerWidth}px`,
+  marginRight: `-${drawerWidth}px`,
   ...(open && {
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    marginLeft: 0,
+    marginRight: 0,
   }),
 }));
 
@@ -42,7 +40,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-export default function Layout({ pageTitle, children }) {
+export default function Layout({ children }) {
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -56,26 +54,33 @@ export default function Layout({ pageTitle, children }) {
   return (
     <React.Fragment>
       <CssBaseline />
-      
-        <Toolbar>
-    
-        </Toolbar>
-      <Drawer
+      <IconButton
+        color="inherit"
+        aria-label="open drawer"
+        onClick={handleDrawerOpen}
+        edge="end"
         sx={{
-          width: drawerWidth,
-          flexShrink: 0,
+          marginRight: '36px',
+        }}
+      >
+        <MenuIcon />
+      </IconButton>
+      <SwipeableDrawer
+        sx={{
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
           },
         }}
-        variant="persistent"
-        anchor="left"
+        variant="temporary"
+        anchor="right"
         open={open}
+        onOpen={handleDrawerOpen}
+        onClose={handleDrawerClose}
       >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
-            <MenuIcon />
+            <ChevronRightIcon />
           </IconButton>
         </DrawerHeader>
         <Divider />
@@ -96,7 +101,7 @@ export default function Layout({ pageTitle, children }) {
             <ListItemText primary="Settings" />
           </ListItem>
         </List>
-      </Drawer>
+      </SwipeableDrawer>
       <Main open={open}>
         <DrawerHeader />
         {children}
