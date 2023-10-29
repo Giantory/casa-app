@@ -9,9 +9,11 @@ import CottageIcon from '@mui/icons-material/Cottage';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import GroupIcon from '@mui/icons-material/Group';
+import FactCheckIcon from '@mui/icons-material/FactCheck';
 
 import { useContext } from 'react';
-import { NavigationContext } from '../layout/UserLayout';
+import { NavigationContext } from '../../layout/UserLayout';
+
 
 
 
@@ -32,8 +34,8 @@ const HorizontalAppBar = () => {
                     height={55}
                     src='/images/logos/logo.svg'
                 />} />
-                <BottomNavigationAction label="Inicio" icon={<CottageIcon />} />
-                <BottomNavigationAction label="Conductores" icon={<GroupIcon />} />
+                <BottomNavigationAction label="Despacho" icon={<FactCheckIcon />} />
+                <BottomNavigationAction label="Equipos" icon={<LocalShippingIcon />} />
                 <BottomNavigationAction label="Equipos" icon={<LocalShippingIcon />} />
                 <BottomNavigationAction label="Historial" icon={<RestoreIcon />} />
                 <BottomNavigationAction label="Estadísticas" icon={<LeaderboardIcon />} />
