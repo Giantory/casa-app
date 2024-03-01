@@ -25,7 +25,7 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const TopToolbar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const [open, setOpen] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -41,7 +41,7 @@ const TopToolbar = () => {
     setAnchorElUser(null);
   };
   const handleClick = () => {
-    setOpen(true)
+    setOpenModal(true)
   };
 
   // const handleDelete = () => {
@@ -87,7 +87,7 @@ const TopToolbar = () => {
           </Menu>
         </Box>
       </Toolbar>
-      <DistributionForm showModal={{open, setOpen}}/>
+      <DistributionForm showModal={{openModal, setOpenModal}}/>
     </Container>
 
   );
