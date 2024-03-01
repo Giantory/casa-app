@@ -27,6 +27,8 @@ import Badge from '@mui/material/Badge';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import UploadIcon from '@mui/icons-material/Upload';
 import DeleteIcon from '@mui/icons-material/Delete';
+import SaveIcon from '@mui/icons-material/Save';
+import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -55,8 +57,9 @@ const Home = () => {
     let totalConsum;
 
     const calculateTotalConsum = () => {
+        console.log(vehiclesListConsum);
         return totalConsum = vehiclesListConsum.reduce((total, vehicle) => {
-            return total + parseFloat(vehicle.consum);
+            return total + parseFloat(vehicle.galones);
         }, 0)
 
     }
@@ -77,15 +80,30 @@ const Home = () => {
                             </Button>
                             <Button size='small' variant="outlined" startIcon={<UploadIcon />}>
                                 Subir
+                                <input
+                                    hidden
+                                    type='file'
+
+                                    accept='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                                    id='account-settings-upload-image'
+                                />
                             </Button>
-
                         </Stack>
-
                     </Grid>
-                    <Grid item xs={6} sx={{ display: "flex", justifyContent: "flex-end" }}>
-                        <Button size='small' variant="contained" color='error' startIcon={<DeleteIcon />} onClick={handleClickOpen}>
-                            Limpiar
-                        </Button>
+                    <Grid item xs={6} sx={{ display: "flex" }}>
+                        <Stack direction="row" spacing={4} sx={{ display: "flex", width: '100%', justifyContent: "flex-end" }}>
+                            <Button disabled={true} size='small' variant="contained" startIcon={<PublishedWithChangesIcon />}
+                                sx={{ backgroundColor: theme.palette.primary.light, }}>
+                                Procesar
+                            </Button>
+                            <Button size='small' variant="contained" startIcon={<SaveIcon />}
+                                sx={{ backgroundColor: theme.palette.primary.light, }} >
+                                Guardar
+                            </Button>
+                            <Button size='small' variant="contained" color='error' startIcon={<DeleteIcon />} onClick={handleClickOpen}>
+                                Limpiar
+                            </Button>
+                        </Stack>
                         <Dialog
                             open={open}
                             onClose={handleClose}
