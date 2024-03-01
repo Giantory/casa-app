@@ -38,7 +38,7 @@ const DistributionForm = (props) => {
     const { snackbarState, setSnackbarState } = useContext(SnackbarContext)
 
     useEffect(() => {
-
+        
         fetch('http://localhost:3001/api/drivers', {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
@@ -52,10 +52,10 @@ const DistributionForm = (props) => {
 
             })
     }, [])
-    const { open, setOpen } = props.showModal;
+    const { openModal, setOpenModal } = props.showModal;
 
     const handleClose = () => {
-        setOpen(false);
+        setOpenModal(false);
     }
     const handleSelectDriver = (event) => {
         setDriverSelected(event.target.value);
@@ -103,7 +103,7 @@ const DistributionForm = (props) => {
     };
     return (
         <Modal
-            open={open}
+            open={openModal}
             onClose={handleClose}
         >
             <Box sx={style}>

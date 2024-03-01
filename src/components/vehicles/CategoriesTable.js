@@ -187,6 +187,8 @@ EnhancedTableHead.propTypes = {
 };
 
 export default function CategoriesTable() {
+
+    
     const [isOpenCategoryInfo, setIsOpenCategoryInfo] = useState(false);
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');

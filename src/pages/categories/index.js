@@ -9,18 +9,18 @@ import DaysControl from '../../components/home/DaysControl';
 import DaysControlSummary from '../../components/home/DaysControlSummary';
 import QuickActionsList from '../../components/home/QuickActionsList';
 import Calendar from '../../components/home/Calendar';
-import ProfilesTable from '../../components/categories/ProfilesTable';
-import CategoryDriver from '../../components/categories/CategoryDriver';
-import CategoriesTable from '../../components/categories/CategoriesTable';
-import VehiclesCounter from '../../components/categories/VehiclesCounter';
-import VehiclesList from '../../components/categories/VehiclesList';
+import ProfilesTable from '../../components/vehicles/ProfilesTable';
+import CategoryDriver from '../../components/vehicles/CategoryDriver';
+import CategoriesTable from '../../components/vehicles/CategoriesTable';
+import VehiclesCounter from '../../components/vehicles/VehiclesCounter';
+import VehiclesList from '../../components/vehicles/VehiclesList';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
-import CategoryCard from '../../components/categories/CategoryCard';
-import RecentConsumChart from '../../components/categories/RecentConsumChart';
+import CategoryCard from '../../components/vehicles/CategoryCard';
+import RecentConsumChart from '../../components/vehicles/RecentConsumChart';
 import { Typography } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { TextField } from '@mui/material';
@@ -66,7 +66,7 @@ const Drivers = () => {
                                 </Button>
                             </Stack>
                         </Grid>
-                        <Grid container item xs={6} sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }} >
+                        {/* <Grid container item xs={6} sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }} >
                             <Grid item xs={12} >
                                 <Stack direction="row" spacing={1}>
                                     <CategoryDriver />
@@ -89,15 +89,13 @@ const Drivers = () => {
                             <Grid item xs={12}>
                                 <VehiclesList />
                             </Grid>
+                        </Grid> */}
+                        <Grid item xs={12}>
+                            <VehiclesList />
                         </Grid>
-                        <Grid container item xs={6}>
-                            <Grid item xs={12}>
-                                <RecentConsumChart />
-                            </Grid>
-                        </Grid>
-                        <Grid item xs={4}>
-
-                        </Grid>
+                        {/* <Grid item xs={6}>
+                            <RecentConsumChart />
+                        </Grid> */}
                     </Grid>
                 </ProfileDriverContext.Provider>
             </CategoryContext.Provider>

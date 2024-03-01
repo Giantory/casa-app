@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from 'react'
 import PropTypes from 'prop-types';
-import { useState, useContext } from 'react';
 import {
   Card,
   CardContent,
@@ -18,7 +17,6 @@ import {
 
 import { visuallyHidden } from '@mui/utils';
 import { Grid } from "@mui/material";
-import VehiclesCounter from '../../components/categories/VehiclesCounter';
 
 
 import { ProfileDriverContext } from "../../pages/categories";
@@ -237,14 +235,35 @@ EnhancedTableHead.propTypes = {
 };
 
 export default function ProfilesTable() {
-  const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('calories');
-  const [selected, setSelected] = React.useState([]);
-  const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(true);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const [order, setOrder] = useState('asc');
+  const [orderBy, setOrderBy] = useState('calories');
+  const [selected, setSelected] = useState([]);
+  const [page, setPage] = useState(0);
+  const [dense, setDense] = useState(true);
+  const [rowsPerPage, setRowsPerPage] = useState(12);
 
   const { selectedProfile, setSelectedProfile } = useContext(ProfileDriverContext);
+
+  const [vehiclesList, setVehiclesList] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3001/api/vehicles', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+
+    })
+        .then(res => {
+            return res.json();
+        })
+        .then(response => {
+            setVehiclesList(response)
+
+        })
+}, [])
+
+console.log(vehiclesList);
+
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -316,13 +335,13 @@ export default function ProfilesTable() {
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
-              rowCount={rows.length}
+              rowCount={vehiclesList.length}
             />
             <TableBody>
-              {stableSort(rows, getComparator(order, orderBy))
+              {stableSort(vehiclesList, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
+                  const isItemSelected = isSelected(row.placa);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
@@ -332,7 +351,7 @@ export default function ProfilesTable() {
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.id}
+                      key={row.placa}
                       selected={isItemSelected}
                       sx={{ cursor: 'pointer' }}
                     >
@@ -340,11 +359,10 @@ export default function ProfilesTable() {
                       <TableCell
                         component="th"
                         id={labelId}
-
                       >
-                        {row.id}
+                        {row.placa}
                       </TableCell>
-                      <TableCell component="th" >{row.name}</TableCell>
+                      <TableCell component="th" >{row.descripcion}</TableCell>
                     </TableRow>
                   );
                 })}
@@ -363,8 +381,8 @@ export default function ProfilesTable() {
         <TablePagination
           rowsPerPageOptions={5}
           component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
+          count={vehiclesList.length}
+          rowsPerPage={-1}
           page={page}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}

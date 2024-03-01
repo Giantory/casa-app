@@ -81,7 +81,7 @@ const RecentConsumChart = () => {
 
     return (
         <Box sx={{ bgcolor: 'background.paper', borderRadius: 2, p: 3 }}>
-            <ReactApexChart type='line' height={480} options={options} series={series} />
+            <ReactApexChart type='line' options={options} series={series} />
         </Box>
     )
 }

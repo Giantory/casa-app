@@ -36,7 +36,7 @@ const HorizontalAppBar = () => {
                 />} />
                 <BottomNavigationAction label="Despacho" icon={<FactCheckIcon />} />
                 <BottomNavigationAction label="Equipos" icon={<LocalShippingIcon />} />
-                <BottomNavigationAction label="Equipos" icon={<LocalShippingIcon />} />
+                {/* <BottomNavigationAction label="Equipos" icon={<LocalShippingIcon />} /> */}
                 <BottomNavigationAction label="Historial" icon={<RestoreIcon />} />
                 <BottomNavigationAction label="Estadísticas" icon={<LeaderboardIcon />} />
             </BottomNavigation>
